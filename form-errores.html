@@ -12,23 +12,20 @@
 <body>
     <div class="container">
         <h1>Feedback</h1>
-        <p class="subtitle">Contame acerca de tu observación...</p>
-        <form target="_blank" action="https://formsubmit.co/dmaradei@itba.edu.ar" method="POST">
-                <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                    <input type="text" name="name" class="form-control" placeholder="Nombre" required>
-                    </div>
-                    <div class="col">
-                    <input type="email" name="email" class="form-control" placeholder="Email" required>
-                    </div>
-                </div>
-                </div>
-                <div class="form-group">
-                <textarea placeholder="Comentame acerca del error que encontraste" class="form-control" name="message" rows="10" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-lg btn-dark btn-block">Enviar</button>
-            </form>
+        <p class="subtitle">Aprecio mucho tu observación</p>
+
+        <form class="formbox" target="_blank" action="https://formsubmit.co/dmaradei@itba.edu.ar" method="POST">
+            <div class="name">
+                <input class="input" type="text" name="name" class="form-control" placeholder="Nombre" required>
+            </div>
+            <div class="email">
+                <input class="input" type="email" name="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="input-box">
+                <textarea class="input" id="comments" placeholder="Comentame acerca del error que encontraste..." class="form-control" name="message" rows="10" required></textarea>
+            </div>
+            <button class="button" type="submit" class="btn btn-lg btn-dark btn-block">Enviar</button>
+        </form>
     </div>
 
     <footer class="footer">

@@ -31,8 +31,89 @@ h1 {
 .subtitle {
     text-align: center;
     color: #7f8c8d;
-    margin-bottom: 30px;
-    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.formbox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 15px 15px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "name email"
+        "input-box input-box"
+        "button button";
+    justify-content: center; 
+    align-content: center; 
+    justify-items: center; 
+    align-items: start;
+    padding-top: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.button {
+    grid-area: button;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: #34495e 0px 6px 8px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 520;
+}
+
+.button:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.input-box {
+    grid-area: input-box;
+    width: 100%;
+}
+
+.name {
+    grid-area: name;
+    width: 100%;
+}
+
+.email {
+    grid-area: email;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    max-width: 450px;
+    height: 50px;
+    padding: 10px;
+    border: 2px solid #005689;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+#comments {
+    width: 100%;
+    max-width: 915px;
+    height: 200px;
+    resize: vertical;
+    min-height: 150px;
 }
 
 .footer {
@@ -69,12 +150,63 @@ h1 {
     margin-top: 15px;
 }
 
+.social-link:hover {
+    transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
-    .container {
-        padding: 20px;
+    body {
+        padding: 15px;
     }
     
-    .footer {
+    .container {
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+    
+    .subtitle {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .formbox {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "name"
+            "email"
+            "input-box"
+            "button";
+        gap: 12px;
+        padding-top: 5px;
+        max-width: 100%;
+    }
+    
+    .input {
+        max-width: 100%;
+        height: 45px;
+        font-size: 0.95em;
+    }
+    
+    #comments {
+        max-width: 100%;
+        height: 150px;
+        min-height: 120px;
+    }
+    
+    .button {
+        padding: 10px 35px;
+        font-size: 0.95em;
+        margin-top: 5px;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+   .footer {
         margin: 20px 20px 0;
         padding: 15px;
     }
@@ -87,3 +219,4 @@ h1 {
         font-size: 0.8em !important;
     }
 }
+
