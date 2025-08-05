@@ -41,13 +41,14 @@ const planData = {
                 { codigo: "30.47", nombre: "Termofluidos I", creditos: 6, correlativas: ["31.21", "93.03", "93.42", "93.41"] },
                 { codigo: "93.22", nombre: "Probabilidad y Estadística", creditos: 6, correlativas: ["93.02"] },
                 { codigo: "94.44", nombre: "Proyecto Interdisciplinario", creditos: 3, correlativas: ["94.43"] },
-                { codigo: "94.51", nombre: "Inglés I", creditos: 0, correlativas: [] }
+                { codigo: "94.51", nombre: "Inglés I", creditos: 0, correlativas: [] },
+                { codigo: "", nombre: "Electiva - Área Complementaria", creditos: 3, correlativas: [] }
             ]
         };
 
         // Estado de las materias
         let materiasCompletadas = new Set();
-        const totalCreditos = 153;
+        const totalCreditos = 156;
 
         // Función para verificar si una materia está disponible
         function estaDisponible(materia) {
