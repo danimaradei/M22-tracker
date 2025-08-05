@@ -12,7 +12,7 @@ const planData = {
                 { codigo: "30.51", nombre: "Introducción a la Ingeniería Mecánica", creditos: 3, correlativas: [] },
                 { codigo: "31.08", nombre: "Sistemas de Representación", creditos: 3, correlativas: [] },
                 { codigo: "92.02", nombre: "Análisis Matemático II", creditos: 6, correlativas: ["92.01", "93.18"] },
-                { codigo: "93.41", nombre: "Física I", creditos: 6, correlativas: ["93.17"] }
+                { codigo: "93.41", nombre: "Física I", creditos: 6, correlativas: ["92.01"] }
             ],
             "Año 2 - Cuatrimestre 1": [
                 { codigo: "30.41", nombre: "Diseño Mecánico I", creditos: 6, correlativas: ["93.41", "30.26", "31.08"] },
