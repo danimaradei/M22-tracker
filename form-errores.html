@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - M22 Interactivo</title>
+    <link rel="stylesheet" href="styles-form.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback</h1>
+        <p class="subtitle">Contame acerca de tu observación...</p>
+        <form target="_blank" action="https://formsubmit.co/dmaradei@itba.edu.ar" method="POST">
+                <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                    <input type="text" name="name" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="col">
+                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                <textarea placeholder="Comentame acerca del error que encontraste" class="form-control" name="message" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-lg btn-dark btn-block">Enviar</button>
+            </form>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-content">
+        <p>Desarrollado por <strong>Daniela Maradei</strong></p>
+        <p class="footer-subtitle">Ingeniería Mecánica ITBA</p>
+    </div>
+    <div class="footer-social">                   
+        <a href="https://linkedin.com/in/daniela-maradei" target="_blank" class="social-link" title="LinkedIn">
+            <img src="./linkedin.png" alt="LinkedIn" width="24" height="24">
+        </a>
+        <a href="https://instagram.com/dani_maradei" target="_blank" class="social-link" title="Instagram">
+            <img src="./Instagram-Logo.png" alt="Instagram" width="24" height="24">
+        </a>
+        </div>
+    </footer>
+
+</body>
+</html>

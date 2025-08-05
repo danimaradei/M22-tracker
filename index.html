@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Estudios - Ingeniería Mecánica</title>
+    <title>M22 Interactivo - Ing Mecánica</title>
     <link rel="stylesheet" href="styles.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +17,8 @@
         <h1>Ingeniería Mecánica</h1>
         <p class="subtitle">Plan de Estudios M22</p>
         
+        <p id="porcentaje">Porcentaje de carrera completada:</p>
+
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill">0%</div>
         </div>
@@ -50,25 +52,44 @@
                 <span>Bloqueada</span>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <h2 class="title-left">Ciclo Básico</h2>
 
         <div id="planContainer"></div>
     </div>
-  <script src="./script.js"></script>
 
-<footer class="footer">
-    <div class="footer-content">
-        <p>Desarrollado por <strong>Daniela Maradei</strong></p>
-        <p class="footer-subtitle">Ingeniería Mecánica ITBA</p>
+    <script src="./script.js"></script>
+
+    <div class="footer">
+        <div class="footer-content">
+            <h2 class="title-left">Ciclo Profesional</h2>
+            <h3 class="title-left">Elegí tu focalización/concentración</h3>
+        </div>
     </div>
-    <div class="footer-social">                   
-        <a href="https://linkedin.com/in/daniela-maradei" target="_blank" class="social-link" title="LinkedIn">
-            <img src="./linkedin.png" alt="LinkedIn" width="24" height="24">
-        </a>
-        <a href="https://instagram.com/dani_maradei" target="_blank" class="social-link" title="Instagram">
-            <img src="./Instagram-Logo.png" alt="Instagram" width="24" height="24">
-        </a>
+
+    <div class="footer">
+        <div class="footer-content">
+            <h3>¿Encontraste un <strong>error</strong> o algo que quedó desactualizado?</h3>
+            <button class="boton" onclick="window.open('form-errores.html', '_blank')">¡Comentámelo!</button>
+        </div>
     </div>
-</footer>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Desarrollado por <strong>Daniela Maradei</strong></p>
+            <p class="footer-subtitle">Ingeniería Mecánica ITBA</p>
+        </div>
+        <div class="footer-social">                   
+            <a href="https://linkedin.com/in/daniela-maradei" target="_blank" class="social-link" title="LinkedIn">
+                <img src="./linkedin.png" alt="LinkedIn" width="24" height="24">
+            </a>
+            <a href="https://instagram.com/dani_maradei" target="_blank" class="social-link" title="Instagram">
+                <img src="./Instagram-Logo.png" alt="Instagram" width="24" height="24">
+            </a>
+        </div>
+    </footer>
 
 </body>
 
