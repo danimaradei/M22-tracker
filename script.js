@@ -166,5 +166,24 @@ const planData = {
             }
         });
 
+        // Función para manejar la selección de concentraciones
+        function seleccionarConcentracion(tipo) {
+            // Remover la clase 'selected' de todos los botones
+            const todosLosBotones = document.querySelectorAll('.boton-concentracion');
+            todosLosBotones.forEach(boton => {
+                boton.classList.remove('selected');
+            });
+            
+            // Agregar la clase 'selected' al botón clickeado
+            const botonClickeado = event.target;
+            botonClickeado.classList.add('selected');
+            
+            // Aquí puedes agregar la lógica para mostrar las materias específicas de cada concentración
+            // En el futuro, aquí podrías:
+            // 1. Cargar las materias específicas de esa concentración
+            // 2. Mostrar una nueva sección con el plan de estudios específico
+            // 3. Navegar a una página específica para esa concentración
+        }
+
         // Inicializar la aplicación
         renderizarPlan();

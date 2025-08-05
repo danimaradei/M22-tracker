@@ -318,6 +318,63 @@ h3 {
     transform: translateY(-2px);
 }
 
+.concentraciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boton-concentracion {
+    background: #8e27d6;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    font-family: 'Lato', sans-serif;
+    font-weight: 550;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton-concentracion:hover {
+    background: #6900d3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.boton-concentracion.focalizacion {
+    background: #e74c3c;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.boton-concentracion.focalizacion:hover {
+    background: #c0392b;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.boton-concentracion.selected {
+    background: #27ae60 !important;
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5) !important;
+    transform: translateY(-2px);
+    border: 2px solid #1e7e34;
+}
+
+.boton-concentracion.selected:hover {
+    background: #229954 !important;
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6) !important;
+}
+
 .footer {
     max-width: 1200px;
     margin: 20px auto 0;
