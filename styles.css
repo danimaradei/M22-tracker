@@ -1,0 +1,281 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 25px;
+            height: 30px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 25px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .year-section {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+        }
+
+        .year-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .cuatrimestre {
+            margin-bottom: 30px;
+        }
+
+        .cuatrimestre-title {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-weight: 500;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .materias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .materia-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .materia-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .materia-card.completed {
+            border-color: #27ae60;
+            background: linear-gradient(135deg, #d5f4e6 0%, #e8f8f5 100%);
+        }
+
+        .materia-card.blocked {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: #f8f9fa;
+        }
+
+        .materia-card.available {
+            border-color: #f39c12;
+            background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%);
+        }
+
+        .materia-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .materia-codigo {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .materia-creditos {
+            background: #3498db;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .materia-nombre {
+            font-size: 1.1em;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .correlativas {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+
+        .correlativas-tag {
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            display: inline-block;
+            margin-bottom: 3px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #bdc3c7;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox.checked {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        .checkbox:hover {
+            border-color: #3498db;
+        }
+
+        .status-text {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.completed {
+            background: linear-gradient(135deg, #d5f4e6 0%, #e8f8f5 100%);
+            border: 2px solid #27ae60;
+        }
+
+        .legend-color.available {
+            background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%);
+            border: 2px solid #f39c12;
+        }
+
+        .legend-color.blocked {
+            background: #f8f9fa;
+            border: 2px solid #bdc3c7;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .materias-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
