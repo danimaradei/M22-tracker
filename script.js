@@ -14,7 +14,6 @@ const planData = {
         { codigo: "92.02", nombre: "Análisis Matemático II", creditos: 6, correlativas: ["92.01", "93.18"] },
         { codigo: "93.41", nombre: "Física I", creditos: 6, correlativas: ["92.01"] },
         { codigo: "71.90", nombre: "Certificaciones tecnológicas", creditos: 0, correlativas: [] }
-
     ],
     "Año 2 - Cuatrimestre 1": [
         { codigo: "30.41", nombre: "Diseño Mecánico I", creditos: 6, correlativas: ["93.41", "30.26", "31.08"] },
@@ -48,13 +47,74 @@ const planData = {
     ]
 };
 
+// Datos del Ciclo Profesional por concentración
+const concentracionesData = {
+    "automotriz": {
+        nombre: "Concentración Automotriz",
+        materias: {
+            "Año 4 - Cuatrimestre 1": [
+                { codigo: "11.15", nombre: "Organización Industrial", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "23.18", nombre: "Electrónica e Instrumentación", creditos: 6, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.48", nombre: "Termofluidos II", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "31.68", nombre: "Instalaciones Industriales", creditos: 6, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "61.27", nombre: "Análisis de Coyuntura Económica", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "61.31", nombre: "Derecho para Ingenieros", creditos: 3, correlativas: [], creditosRequeridos: 144 }
+            ],
+            "Año 4 - Cuatrimestre 2": [
+                { codigo: "12.83", nombre: "Seguridad Ocupacional y Ambiental", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "23.16", nombre: "Sistemas de Control", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.09", nombre: "Motores de Combustión Interna", creditos: 6, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.19", nombre: "Introducción a la Dinámica del Automóvil", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.23", nombre: "Mantenimiento Industrial", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.49", nombre: "Máquinas Térmicas e Hidráulicas", creditos: 6, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "61.16", nombre: "Introducción a las Finanzas", creditos: 3, correlativas: [], creditosRequeridos: 0 }
+            ],
+            "Año 5 - Cuatrimestre 1": [
+                { codigo: "30.40", nombre: "Sistemas Mecatrónicos del Automóvil", creditos: 4, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "30.80", nombre: "Proyecto Final (Anual)", creditos: 6, correlativas: [], creditosRequeridos: 192 },
+                { codigo: "31.84", nombre: "Estructuras Automotrices", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "94.52", nombre: "Inglés II", creditos: 0, correlativas: [], creditosRequeridos: 0 }
+            ],
+            "Año 5 - Cuatrimestre 2": [
+                { codigo: "31.85", nombre: "Transmisiones Automotrices", creditos: 3, correlativas: [], creditosRequeridos: 0 },
+                { codigo: "94.65", nombre: "Práctica Profesional Supervisada", creditos: 0, correlativas: [], creditosRequeridos: 144 }
+            ]
+        },
+        electivas: {
+            creditos: 20,
+            creditosRequeridos: 20
+        }
+    }
+    // Aquí se pueden agregar más concentraciones siguiendo el mismo patrón
+};
+
 // Estado de las materias
 let materiasCompletadas = new Set();
+let concentracionSeleccionada = null;
 const totalCreditos = 153;
+const totalCreditosProfesional = 87;
 
 // Función para verificar si una materia está disponible
 function estaDisponible(materia) {
-    return materia.correlativas.every(correlativa => materiasCompletadas.has(correlativa));
+    // Si la materia tiene correlativas específicas, verificarlas
+    if (materia.correlativas && materia.correlativas.length > 0) {
+        return materia.correlativas.every(correlativa => materiasCompletadas.has(correlativa));
+    }
+    
+    // Si la materia requiere créditos, verificar que se cumplan
+    if (materia.creditosRequeridos) {
+        const creditosObtenidos = calcularCreditosObtenidos();
+        return creditosObtenidos >= materia.creditosRequeridos;
+    }
+    
+    return true;
+}
+
+// Función para calcular créditos obtenidos
+function calcularCreditosObtenidos() {
+    const todasLasMaterias = Object.values(planData).flat();
+    const completadas = todasLasMaterias.filter(m => materiasCompletadas.has(m.codigo));
+    return completadas.reduce((sum, m) => sum + m.creditos, 0);
 }
 
 // Función para obtener el estado de una materia
@@ -73,9 +133,14 @@ function crearTarjetaMateria(materia) {
     const estado = getEstadoMateria(materia);
     const estaCompletada = materiasCompletadas.has(materia.codigo);
     
-    const correlativasText = materia.correlativas.length > 0 
-        ? materia.correlativas.map(c => `<span class="correlativas-tag">${c}</span>`).join('')
-        : '<span class="correlativas-tag">Sin correlativas</span>';
+    let correlativasText = '';
+    if (materia.correlativas && materia.correlativas.length > 0) {
+        correlativasText = materia.correlativas.map(c => `<span class="correlativas-tag">${c}</span>`).join('');
+    } else if (materia.creditosRequeridos && materia.creditosRequeridos > 0) {
+        correlativasText = `<span class="correlativas-tag">${materia.creditosRequeridos} créditos</span>`;
+    } else {
+        correlativasText = '<span class="correlativas-tag">Sin correlativas</span>';
+    }
 
     return `
         <div class="materia-card ${estado}" data-codigo="${materia.codigo}">
@@ -101,8 +166,8 @@ function crearTarjetaMateria(materia) {
     `;
 }
 
-// Función para renderizar el plan
-function renderizarPlan() {
+// Función para renderizar el plan básico
+function renderizarPlanBasico() {
     const container = document.getElementById('planContainer');
     let html = '';
 
@@ -123,20 +188,74 @@ function renderizarPlan() {
     });
 
     container.innerHTML = html;
-    actualizarEstadisticas();
+}
+
+// Función para renderizar el plan profesional
+function renderizarPlanProfesional() {
+    const container = document.getElementById('profesionalContainer');
+    
+    if (!concentracionSeleccionada || !concentracionesData[concentracionSeleccionada]) {
+        container.innerHTML = '<p class="no-selection">Selecciona una concentración para ver las materias del Ciclo Profesional</p>';
+        return;
+    }
+
+    const concentracion = concentracionesData[concentracionSeleccionada];
+    let html = '';
+
+    Object.entries(concentracion.materias).forEach(([periodo, materias]) => {
+        const [año, cuatrimestre] = periodo.split(' - ');
+        
+        html += `
+            <div class="year-section">
+                <div class="year-title">${año}</div>
+                <div class="cuatrimestre">
+                    <div class="cuatrimestre-title">${cuatrimestre}</div>
+                    <div class="materias-grid">
+                        ${materias.map(materia => crearTarjetaMateria(materia)).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    // Agregar información sobre electivas si existe
+    if (concentracion.electivas) {
+        html += `
+            <div class="year-section">
+                <div class="year-title">Electivas</div>
+                <div class="cuatrimestre">
+                    <div class="electivas-info">
+                        <p><strong>Créditos requeridos:</strong> ${concentracion.electivas.creditos} créditos</p>
+                        <p><strong>Correlativas:</strong> ${concentracion.electivas.creditosRequeridos} créditos</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    container.innerHTML = html;
 }
 
 // Función para actualizar estadísticas
 function actualizarEstadisticas() {
     const todasLasMaterias = Object.values(planData).flat();
-    const completadas = todasLasMaterias.filter(m => materiasCompletadas.has(m.codigo));
-    const disponibles = todasLasMaterias.filter(m => !materiasCompletadas.has(m.codigo) && estaDisponible(m));
+    let todasLasMateriasProfesionales = [];
+    
+    if (concentracionSeleccionada && concentracionesData[concentracionSeleccionada]) {
+        todasLasMateriasProfesionales = Object.values(concentracionesData[concentracionSeleccionada].materias).flat();
+    }
+    
+    const todasLasMateriasCompletas = [...todasLasMaterias, ...todasLasMateriasProfesionales];
+    
+    const completadas = todasLasMateriasCompletas.filter(m => materiasCompletadas.has(m.codigo));
+    const disponibles = todasLasMateriasCompletas.filter(m => !materiasCompletadas.has(m.codigo) && estaDisponible(m));
     const creditosObtenidos = completadas.reduce((sum, m) => sum + m.creditos, 0);
-    const progreso = Math.round((creditosObtenidos / totalCreditos) * 100);
+    const totalCreditosCompleto = totalCreditos + (concentracionSeleccionada ? totalCreditosProfesional : 0);
+    const progreso = Math.round((creditosObtenidos / totalCreditosCompleto) * 100);
 
     document.getElementById('completedCount').textContent = completadas.length;
     document.getElementById('availableCount').textContent = disponibles.length;
-    document.getElementById('totalCredits').textContent = `${creditosObtenidos}/${totalCreditos}`;
+    document.getElementById('totalCredits').textContent = `${creditosObtenidos}/${totalCreditosCompleto}`;
     
     const progressFill = document.getElementById('progressFill');
     progressFill.style.width = `${progreso}%`;
@@ -146,7 +265,14 @@ function actualizarEstadisticas() {
 // Función para alternar el estado de una materia
 function alternarMateria(codigo) {
     const todasLasMaterias = Object.values(planData).flat();
-    const materia = todasLasMaterias.find(m => m.codigo === codigo);
+    let todasLasMateriasProfesionales = [];
+    
+    if (concentracionSeleccionada && concentracionesData[concentracionSeleccionada]) {
+        todasLasMateriasProfesionales = Object.values(concentracionesData[concentracionSeleccionada].materias).flat();
+    }
+    
+    const todasLasMateriasCompletas = [...todasLasMaterias, ...todasLasMateriasProfesionales];
+    const materia = todasLasMateriasCompletas.find(m => m.codigo === codigo);
     
     if (!materia) return;
 
@@ -156,7 +282,9 @@ function alternarMateria(codigo) {
         materiasCompletadas.add(codigo);
     }
 
-    renderizarPlan();
+    renderizarPlanBasico();
+    renderizarPlanProfesional();
+    actualizarEstadisticas();
 }
 
 // Event listeners
@@ -176,7 +304,10 @@ function seleccionarConcentracion(tipo) {
     // Si ya está seleccionado, lo deseleccionamos
     if (botonClickeado.classList.contains('selected')) {
         botonClickeado.classList.remove('selected');
-        return; // salimos de la función
+        concentracionSeleccionada = null;
+        renderizarPlanProfesional();
+        actualizarEstadisticas();
+        return;
     }
 
     // Si no estaba seleccionado, removemos la clase de los demás y lo marcamos
@@ -185,9 +316,19 @@ function seleccionarConcentracion(tipo) {
     });
 
     botonClickeado.classList.add('selected');
-
-    // Aquí podés agregar lógica adicional si necesitás
+    concentracionSeleccionada = tipo;
+    
+    // Renderizar las materias de la concentración seleccionada
+    renderizarPlanProfesional();
+    actualizarEstadisticas();
 }
 
 // Inicializar la aplicación
-renderizarPlan();
+function inicializarApp() {
+    renderizarPlanBasico();
+    renderizarPlanProfesional();
+    actualizarEstadisticas();
+}
+
+// Inicializar
+inicializarApp();
