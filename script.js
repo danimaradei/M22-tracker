@@ -12,34 +12,36 @@ const planData = {
                 { codigo: "30.51", nombre: "Introducción a la Ingeniería Mecánica", creditos: 3, correlativas: [] },
                 { codigo: "31.08", nombre: "Sistemas de Representación", creditos: 3, correlativas: [] },
                 { codigo: "92.02", nombre: "Análisis Matemático II", creditos: 6, correlativas: ["92.01", "93.18"] },
-                { codigo: "93.41", nombre: "Física I", creditos: 6, correlativas: ["92.01"] }
+                { codigo: "93.41", nombre: "Física I", creditos: 6, correlativas: ["92.01"] },
+                { codigo: "71.90", nombre: "Certificaciones tecnológicas", creditos: 0, correlativas: [] }
+
             ],
             "Año 2 - Cuatrimestre 1": [
                 { codigo: "30.41", nombre: "Diseño Mecánico I", creditos: 6, correlativas: ["93.41", "30.26", "31.08"] },
                 { codigo: "30.46", nombre: "Laboratorio de Diseño Mecánico", creditos: 3, correlativas: ["93.41", "31.08", "30.26"] },
                 { codigo: "71.59", nombre: "Estructura de Datos y Programación", creditos: 6, correlativas: ["71.58", "71.90"] },
                 { codigo: "92.03", nombre: "Análisis Matemático III", creditos: 6, correlativas: ["92.01", "93.18"] },
-                { codigo: "93.42", nombre: "Física II", creditos: 6, correlativas: ["93.02"] }
+                { codigo: "93.42", nombre: "Física II", creditos: 6, correlativas: ["92.02"] }
             ],
             "Año 2 - Cuatrimestre 2": [
-                { codigo: "30.42", nombre: "Diseño Mecánico II", creditos: 6, correlativas: ["93.02", "93.03", "93.41"] },
+                { codigo: "30.42", nombre: "Diseño Mecánico II", creditos: 6, correlativas: ["92.02", "92.03", "93.41"] },
                 { codigo: "31.21", nombre: "Termodinámica", creditos: 6, correlativas: ["93.42", "93.41"] },
                 { codigo: "92.04", nombre: "Análisis Matemático IV", creditos: 6, correlativas: ["92.02", "92.03"] },
                 { codigo: "93.07", nombre: "Métodos Numéricos", creditos: 3, correlativas: ["71.58", "92.03"] },
                 { codigo: "93.43", nombre: "Física III", creditos: 6, correlativas: ["92.03", "93.41"] }
             ],
             "Año 3 - Cuatrimestre 1": [
-                { codigo: "21.08", nombre: "Electrotecnia", creditos: 6, correlativas: ["93.62"] },
+                { codigo: "21.08", nombre: "Electrotecnia", creditos: 6, correlativas: ["93.43"] },
                 { codigo: "30.25", nombre: "Ciencia de Materiales II", creditos: 3, correlativas: ["30.26"] },
-                { codigo: "30.43", nombre: "Diseño Mecánico III A", creditos: 4, correlativas: ["93.66", "30.42", "93.03", "93.68"] },
-                { codigo: "30.44", nombre: "Diseño Mecánico III B", creditos: 4, correlativas: ["93.66", "30.42", "93.03", "93.68"] },
-                { codigo: "93.61", nombre: "Física IV", creditos: 4, correlativas: ["93.42", "93.62"] },
+                { codigo: "30.43", nombre: "Diseño Mecánico III A", creditos: 4, correlativas: ["30.42", "92.03", "93.07", "92.04"] },
+                { codigo: "30.44", nombre: "Diseño Mecánico III B", creditos: 4, correlativas: ["92.03", "30.42", "93.07", "92.04"] },
+                { codigo: "93.61", nombre: "Física IV", creditos: 4, correlativas: ["93.42", "93.43"] },
                 { codigo: "94.43", nombre: "Metodología del Diseño", creditos: 3, correlativas: [] }
             ],
             "Año 3 - Cuatrimestre 2": [
-                { codigo: "30.45", nombre: "Diseño Mecánico IV", creditos: 6, correlativas: ["30.43", "30.25", "30.44"] },
-                { codigo: "30.47", nombre: "Termofluidos I", creditos: 6, correlativas: ["31.21", "93.03", "93.42", "93.41"] },
-                { codigo: "93.22", nombre: "Probabilidad y Estadística", creditos: 6, correlativas: ["93.02"] },
+                { codigo: "30.45", nombre: "Diseño Mecánico IV", creditos: 6, correlativas: ["30.41", "30.43", "30.44", "30.25"] },
+                { codigo: "30.47", nombre: "Termofluidos I", creditos: 6, correlativas: ["31.21", "92.03", "93.42", "93.41"] },
+                { codigo: "93.24", nombre: "Probabilidad y Estadística", creditos: 6, correlativas: ["92.02"] },
                 { codigo: "94.44", nombre: "Proyecto Interdisciplinario", creditos: 3, correlativas: ["94.43"] },
                 { codigo: "94.51", nombre: "Inglés I", creditos: 0, correlativas: [] },
                 { codigo: "", nombre: "Electiva - Área Complementaria", creditos: 3, correlativas: [] }
@@ -48,7 +50,7 @@ const planData = {
 
         // Estado de las materias
         let materiasCompletadas = new Set();
-        const totalCreditos = 156;
+        const totalCreditos = 153;
 
         // Función para verificar si una materia está disponible
         function estaDisponible(materia) {
